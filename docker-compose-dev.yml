@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  netflux:
+    volumes:
+      - netflux-sync:/usr/src/app
+
+volumes:
+  netflux-sync:
+    external: true
