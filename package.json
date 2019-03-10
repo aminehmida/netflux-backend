@@ -12,6 +12,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jest": "^24.1.0",
+    "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.17"
   },
   "devDependencies": {
@@ -37,6 +38,7 @@
         "lines": 50,
         "statements": 50
       }
-    }
+    },
+    "testEnvironment": "node"
   }
 }

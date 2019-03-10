@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { encryptPassword } from "../../helpers/security";
+
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -10,9 +12,14 @@ const UserSchema = new Schema({
     type: String,
     reqiured: true
   },
-  email: {
+  password: {
     type: String,
     required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
   },
   isAdmin: {
     type: Boolean,
@@ -24,4 +31,11 @@ const UserSchema = new Schema({
   }
 });
 
-export default mongoose.model("user", UserSchema);
+UserSchema.pre("save", function(next) {
+  if (this.password) this.password = encryptPassword(this.password);
+  next();
+});
+
+const User = mongoose.model("user", UserSchema);
+
+export default User;
