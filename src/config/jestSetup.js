@@ -1,19 +1,21 @@
 const mongoose = require("mongoose");
 
-import "../models/Movie";
+// ensure the NODE_ENV is set to 'test'
+// this is helpful when you would like to change behavior when testing
+process.env.NODE_ENV = "test";
 
 beforeEach(done => {
-  const { collections, readyState } = mongoose.connection;
+  const { readyState, collections } = mongoose.connection;
 
-  function clearDB() {
+  const clearDB = () => {
     for (let i in collections) {
-      collections[i].remove();
+      collections[i].remove(function() {});
     }
     return done();
-  }
+  };
 
   if (readyState === 0) {
-    mongoose.connect("mongodb://mongo:27017/netflux-test", err => {
+    mongoose.connect("mongodb://mongo:27017/netflux-test", function(err) {
       if (err) {
         throw err;
       }
@@ -28,5 +30,3 @@ afterEach(done => {
   mongoose.disconnect();
   return done();
 });
-
-afterAll(done => done());

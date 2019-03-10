@@ -4,7 +4,6 @@ SHELL := /usr/bin/env bash
 ## Stach Commands ##
 ####################
 
-
 setup: bundle-install pull-images pull-dependencies
 
 deploy: setup build start 
@@ -19,13 +18,16 @@ rebuild: bundle-install build
 bundle-install:
 	bundle install --path .bundle/gems
 
-start-sync:
+start:
 	bundle exec docker-sync-stack start
+
+enter:
+	docker exec -it netflux /bin/bash
 
 start-dev:
 	docker volume create --name=netflux-sync && docker-compose -f docker-compose.yml -f docker-compose-dev.yml up
 
-start: 
+start-prod: 
 	docker-compose -f docker-compose.yml up 
 
 start-sync:
