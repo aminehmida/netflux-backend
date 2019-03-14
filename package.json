@@ -6,14 +6,17 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "test:watch": "jest --watch src"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "jest": "^24.1.0",
     "jsonwebtoken": "^8.5.0",
-    "mongoose": "^5.4.17"
+    "mongoose": "^5.4.17",
+    "mongoose-regex-search": "^0.7.0",
+    "supertest": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
@@ -21,6 +24,7 @@
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/runtime": "^7.3.4",
+    "mock-mongoose-model": "^0.1.2",
     "nodemon": "^1.18.10"
   },
   "jest": {

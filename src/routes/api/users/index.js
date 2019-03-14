@@ -1,20 +1,9 @@
 import { Router } from "express";
-import Movie from "../../models/Movie";
-import User, { generateAccessToken } from "../../models/User";
-import { Mongoose } from "mongoose";
+import User, { generateAccessToken, userExists } from "../../../models/User";
 
 const apiRouter = Router();
 
-apiRouter.get("/movies", async (_, res) => {
-  try {
-    const movies = await Movie.find();
-    res.json({ movies });
-  } catch (err) {
-    res.status(404).json({ msg: "No movies found" });
-  }
-});
-
-apiRouter.post("/users/sign-up", async (req, res) => {
+apiRouter.post("/sign-up", async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
   try {
@@ -35,13 +24,19 @@ apiRouter.post("/users/sign-up", async (req, res) => {
   }
 });
 
-apiRouter.post("/users/sign-in", async (req, res) => {
-  const { email, password } = req.body;
+apiRouter.post("/sign-in", async (req, res) => {
+  if (!req.body || !req.body.email || !req.body.password) {
+    res
+      .status(400)
+      .send({ description: "Your request is missing body params" });
+    return;
+  }
 
-  const user = await User.findOne({ email, password });
+  const { email, password } = req.body;
+  const user = await userExists({ email, password });
   if (user) {
     const accessToken = generateAccessToken(user["_id"]);
-    res.send({ accessToken });
+    res.status(200).send({ accessToken });
   } else {
     res.status(401).send({ description: "Wrong credentials" });
   }

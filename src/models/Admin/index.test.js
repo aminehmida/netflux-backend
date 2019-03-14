@@ -10,7 +10,8 @@ describe("User", () => {
         firstName: "عادل",
         lastName: "إمام",
         email: "adelimam@email.com",
-        password: "password"
+        password: "password",
+        isAdmin: true
       });
 
       await newUser.save();
@@ -19,7 +20,8 @@ describe("User", () => {
       ).toMatchObject({
         firstName: "عادل",
         lastName: "إمام",
-        email: "adelimam@email.com"
+        email: "adelimam@email.com",
+        isAdmin: true
       });
     });
   });
