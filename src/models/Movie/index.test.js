@@ -5,7 +5,9 @@ describe("Movie", () => {
     const newMovie = new Movie({
       name: "I am legend",
       year: 2011,
-      image: "https://..."
+      image: "https://...",
+      category: "FILM",
+      genre: ["COMEDY", "HORROR"]
     });
 
     await newMovie.save();
@@ -14,10 +16,16 @@ describe("Movie", () => {
       name: "I am legend"
     });
 
-    expect(movie).toMatchObject({
-      name: "I am legend",
-      year: 2011,
-      image: "https://..."
-    });
+    const { __v, _id, createdAt, ...matchingMovieObject } = movie._doc;
+
+    expect(JSON.stringify(matchingMovieObject)).toEqual(
+      JSON.stringify({
+        genre: ["COMEDY", "HORROR"],
+        name: "I am legend",
+        year: 2011,
+        image: "https://...",
+        category: "FILM"
+      })
+    );
   });
 });

@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
-import { encryptPassword } from "../../helpers/security";
 import { preSaveEncryprtPassword } from "../helpers";
 
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const AdminSchema = new Schema({
   firstName: {
     type: String,
     required: true
@@ -22,24 +21,14 @@ const UserSchema = new Schema({
     required: true,
     unique: true
   },
-
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
 
-UserSchema.pre("save", preSaveEncryprtPassword);
+AdminSchema.pre("save", preSaveEncryprtPassword);
 
-const User = mongoose.model("user", UserSchema);
+const Admin = mongoose.model("admin", AdminSchema);
 
-export const userExists = async ({ email, password }) => {
-  const user = await User.findOne({
-    email,
-    password: encryptPassword(password)
-  });
-
-  return user;
-};
-
-export default User;
+export default Admin;
