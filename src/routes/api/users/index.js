@@ -1,11 +1,11 @@
 import { Router } from "express";
-import User, { generateAccessToken, userExists } from "../../../models/User";
+import User, { findUser } from "../../../models/User";
+import { generateAccessToken } from "../../../helpers/security";
 
 const apiRouter = Router();
 
 apiRouter.post("/sign-up", async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-
   try {
     const newUser = new User({
       firstName,
@@ -33,7 +33,7 @@ apiRouter.post("/sign-in", async (req, res) => {
   }
 
   const { email, password } = req.body;
-  const user = await userExists({ email, password });
+  const user = await findUser({ email, password });
   if (user) {
     const accessToken = generateAccessToken(user["_id"]);
     res.status(200).send({ accessToken });

@@ -4,6 +4,7 @@ import crypto from "crypto";
 const HUSH = "hushhhh";
 const EXPIRES_IN = 60 * 15;
 const ENCRYPTION_ALGORITHM = "sha1";
+
 export const generateAccessToken = userId =>
   jwt.sign({ sub: userId }, HUSH, {
     expiresIn: EXPIRES_IN
