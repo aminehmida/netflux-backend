@@ -6,6 +6,11 @@ SHELL := /usr/bin/env bash
 
 setup: bundle-install pull-images
 
+install-docker-compose:
+	curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)"  -o /usr/local/bin/docker-compose && \
+	mv ./docker-compose /usr/bin/docker-compose && \ 
+	chmod +x /usr/bin/docker-compose
+	
 deploy: pull-images build start-prod 
 
 build:
