@@ -4,14 +4,14 @@ SHELL := /usr/bin/env bash
 ## Stach Commands ##
 ####################
 
-setup: bundle-install pull-images pull-dependencies
+setup: bundle-install pull-images
 
-deploy: setup build start 
+deploy: pull-images build start-prod 
 
 build:
-	docker-compose build
+	docker-compose build && docker volume create --name=netflux-sync
 
-setup-build: rebuild pull-dependencies
+setup-build: rebuild
 
 rebuild: bundle-install build
 
@@ -25,7 +25,7 @@ enter:
 	docker exec -it netflux /bin/bash
 
 start-dev:
-	docker volume create --name=netflux-sync && docker-compose -f docker-compose.yml -f docker-compose-dev.yml up
+	docker-compose -f docker-compose.yml -f docker-compose-dev.yml up
 
 start-prod: 
 	docker-compose -f docker-compose.yml up 
@@ -41,8 +41,3 @@ pull-images:
 
 push-images:
 	docker-compose push
-
-pull-dependencies:
-
-
-
