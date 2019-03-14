@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { preSaveEncryprtPassword } from "../helpers";
+import { preSaveEncryprtPassword } from "../concerns";
 
 const Schema = mongoose.Schema;
 

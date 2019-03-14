@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { encryptPassword } from "../../helpers/security";
-import { preSaveEncryprtPassword } from "../helpers";
+import { preSaveEncryprtPassword } from "../concerns";
 
 const Schema = mongoose.Schema;
 
@@ -33,7 +33,7 @@ UserSchema.pre("save", preSaveEncryprtPassword);
 
 const User = mongoose.model("user", UserSchema);
 
-export const userExists = async ({ email, password }) => {
+export const findUser = async ({ email, password }) => {
   const user = await User.findOne({
     email,
     password: encryptPassword(password)

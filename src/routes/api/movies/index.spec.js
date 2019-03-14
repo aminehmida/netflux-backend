@@ -23,7 +23,7 @@ describe("api/movies", () => {
 
       const response = await request(app).get("/latest");
       expect(response.status).toEqual(200);
-      expect(cleanResponse(JSON.parse(response.text)["movies"])).toEqual(
+      expect(cleanResponse(response.body.movies)).toEqual(
         cleanResponse(movies)
       );
     });
@@ -32,7 +32,7 @@ describe("api/movies", () => {
       await Movie.collection.insert(movies);
       const response = await request(app).get("/list/film/horror");
       expect(response.status).toEqual(200);
-      expect(cleanResponse(JSON.parse(response.text)["movies"])).toEqual(
+      expect(cleanResponse(response.body.movies)).toEqual(
         cleanResponse(
           movies.filter(
             m => m.category === "FILM" && m.genre.includes("HORROR")
