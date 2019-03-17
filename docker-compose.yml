@@ -11,11 +11,8 @@ services:
       - 80:3000
     links:
       - mongo
-    volumes:
-      - netflux-install:/usr/src/app
     depends_on:
       - mongo
-    restart: on-failure
 
   mongo:
     container_name: mongo
@@ -24,6 +21,3 @@ services:
       - "27017:27017"
     volumes:
       - ../netflux/data:/data/db:rw
-
-volumes:
-  netflux-install: {}

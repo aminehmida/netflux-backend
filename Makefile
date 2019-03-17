@@ -6,15 +6,10 @@ SHELL := /usr/bin/env bash
 
 setup: bundle-install pull-images
 
-install-docker-compose:
-	sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)"  -o /usr/local/bin/docker-compose && \
-	sudo mv ./docker-compose /usr/bin/docker-compose && \ 
-	sudo chmod +x /usr/bin/docker-compose
-
 deploy: pull-images build start-prod 
 
 build:
-	docker-compose build && docker volume create --name=netflux-sync
+	docker-compose build --no-cache
 
 setup-build: rebuild
 
@@ -24,7 +19,7 @@ bundle-install:
 	bundle install --path .bundle/gems
 
 start:
-	bundle exec docker-sync-stack start
+	docker volume create --name=netflux-sync && bundle exec docker-sync-stack start
 
 enter:
 	docker exec -it netflux /bin/bash
@@ -43,6 +38,3 @@ clean:
 
 pull-images:
 	docker-compose pull
-
-push-images:
-	docker-compose push
