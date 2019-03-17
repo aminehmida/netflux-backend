@@ -13,7 +13,9 @@ apiRouter.post("/sign-up", async (req, res) => {
       password,
       email
     });
+
     await newUser.save();
+
     res.send();
   } catch (error) {
     if (error.name === "MongoError" && error.code === 11000) {

@@ -5,9 +5,6 @@ jest.mock("../../helpers/security");
 
 describe("User", () => {
   describe("existExists", () => {
-    // beforeEach(done => {
-    //   clearDB(done);
-    // });
     it("checks if user exists", async () => {
       helpers.encryptPassword.mockImplementation(() => "encrypted-password");
       const newUser = new User({
@@ -18,7 +15,6 @@ describe("User", () => {
       });
 
       await newUser.save();
-
       const user = await findUser({
         email: "adelimam@email.com",
         password: "password"

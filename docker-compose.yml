@@ -11,12 +11,17 @@ services:
       - mongo
     volumes:
       - netflux-install:/usr/src/app
+    depends_on:
+      - mongo
+    restart: on-failure
 
   mongo:
     container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
+    volumes:
+      - ../netflux/data:/data/db:rw
 
 volumes:
   netflux-install: {}
