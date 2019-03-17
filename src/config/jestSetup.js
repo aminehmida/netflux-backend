@@ -15,12 +15,15 @@ beforeEach(done => {
   };
 
   if (readyState === 0) {
-    mongoose.connect("mongodb://mongo:27017/netflux-test", function(err) {
-      if (err) {
-        throw err;
+    mongoose.connect(
+      `mongodb://${process.env.MONGO_DB_HOST}/netflux-test`,
+      function(err) {
+        if (err) {
+          throw err;
+        }
+        return clearDB();
       }
-      return clearDB();
-    });
+    );
   } else {
     return clearDB();
   }

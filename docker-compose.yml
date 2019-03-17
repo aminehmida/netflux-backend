@@ -2,6 +2,8 @@ version: "2"
 
 services:
   netflux:
+    env_file:
+      - .env
     container_name: netflux
     restart: always
     build: .
