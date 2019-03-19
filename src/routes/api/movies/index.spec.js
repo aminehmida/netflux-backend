@@ -4,6 +4,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import { movies } from "./index.fixtures";
 import Movie from "../../../models/Movie";
+process.env.TEST_SUITE = "movies-routes-systems-test";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,7 +36,7 @@ describe("api/movies", () => {
       expect(cleanResponse(response.body.movies)).toEqual(
         cleanResponse(
           movies.filter(
-            m => m.category === "FILM" && m.genre.includes("HORROR")
+            m => m.category === "Film" && m.genres.includes("HORROR")
           )
         )
       );
@@ -69,7 +70,7 @@ describe("api/movies", () => {
       const response = await request(app).get("/search/hamstead");
       expect(response.status).toEqual(200);
       expect(cleanResponse(JSON.parse(response.text)["movies"])).toEqual(
-        cleanResponse(movies.filter(m => m.name === "Hamstead"))
+        cleanResponse(movies.filter(m => m.originalTitle === "Hamstead"))
       );
     });
   });

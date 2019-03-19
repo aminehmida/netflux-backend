@@ -1,44 +1,158 @@
 export const movies = [
   {
-    name: "I am legend",
-    year: 2019,
-    category: "FILM",
-    image: "https://someimage.png",
-    genre: ["COMEDY", "AMERICAN"]
+    originalTitle: "I am legend",
+    originalOverview: "Some overview on the movie",
+    releaseDate: "2019-05-01",
+    category: "Film",
+    posterPath: "/someimage.png",
+    backDropPath: "/backDrop.png",
+    popularity: "221",
+    voteAverage: "4.3",
+    movieLanguages: [
+      {
+        title: "Some title ",
+        language: "ar",
+        overview: "Some overview"
+      }
+    ],
+    movieVideos: [
+      {
+        title: "Video title",
+        site: "Youtube",
+        key: "videoid",
+        type: "Trailer"
+      }
+    ],
+    genres: ["Comedy", "American"]
   },
   {
-    name: "After life",
-    year: 2019,
-    category: "FILM",
-    image: "https://someimage.png",
-    genre: ["COMEDY", "DRAMA"]
+    originalTitle: "After life",
+    originalOverview: "Some overview on the movie",
+    releaseDate: "2019-05-01",
+    category: "Film",
+    posterPath: "/someimage.png",
+    backDropPath: "/backDrop.png",
+    popularity: "221",
+    voteAverage: "4.3",
+    movieLanguages: [
+      {
+        title: "Some title ",
+        language: "ar",
+        overview: "Some overview"
+      }
+    ],
+    movieVideos: [
+      {
+        title: "Video title",
+        site: "Youtube",
+        key: "videoid",
+        type: "Trailer"
+      }
+    ],
+    genres: ["Comedy", "American"]
   },
   {
-    name: "Colony",
-    year: 2019,
-    category: "FILM",
-    image: "https://someimage.png",
-    genre: ["TEENS", "DOCUMENTRY"]
+    originalTitle: "Colony",
+    originalOverview: "Some overview on the movie",
+    releaseDate: "2019-05-01",
+    category: "Film",
+    posterPath: "/someimage.png",
+    backDropPath: "/backDrop.png",
+    popularity: "221",
+    voteAverage: "4.3",
+    movieLanguages: [
+      {
+        title: "Some title ",
+        language: "ar",
+        overview: "Some overview"
+      }
+    ],
+    movieVideos: [
+      {
+        title: "Video title",
+        site: "Youtube",
+        key: "videoid",
+        type: "Trailer"
+      }
+    ],
+    genres: ["Teens", "Documentry"]
   },
   {
-    name: "Valerian",
-    year: 2019,
-    category: "FILM",
-    image: "https://someimage.png",
-    genre: ["COMEDY", "ROMANCE"]
+    originalTitle: "Valerian",
+    originalOverview: "Some overview on the movie",
+    releaseDate: "2019-05-01",
+    category: "Film",
+    posterPath: "/someimage.png",
+    backDropPath: "/backDrop.png",
+    popularity: "221",
+    voteAverage: "4.3",
+    movieLanguages: [
+      {
+        title: "Some title ",
+        language: "ar",
+        overview: "Some overview"
+      }
+    ],
+    movieVideos: [
+      {
+        title: "Video title",
+        site: "Youtube",
+        key: "videoid",
+        type: "Trailer"
+      }
+    ],
+    genres: ["Comedy", "Romance"]
   },
   {
-    name: "Polar",
-    year: 2019,
+    originalTitle: "Polar",
+    originalOverview: "Some overview on the movie",
+    releaseDate: "2019-05-01",
     category: "SERIES",
-    image: "https://someimage.png",
-    genre: ["HORROR", "AMERICAN"]
+    posterPath: "/someimage.png",
+    backDropPath: "/backDrop.png",
+    popularity: "221",
+    voteAverage: "4.3",
+    movieLanguages: [
+      {
+        title: "Some title ",
+        language: "ar",
+        overview: "Some overview"
+      }
+    ],
+    movieVideos: [
+      {
+        title: "Video title",
+        site: "Youtube",
+        key: "videoid",
+        type: "Trailer"
+      }
+    ],
+    genres: ["Horror", "American"]
   },
   {
-    name: "Hamstead",
-    year: 2019,
-    category: "FILM",
-    image: "https://someimage.png",
-    genre: ["COMEDY", "HORROR"]
+    originalTitle: "Hamstead",
+    originalOverview: "Some overview on the movie",
+    releaseDate: "2019-05-01",
+    category: "Film",
+    posterPath: "/someimage.png",
+    backDropPath: "/backDrop.png",
+    popularity: "221",
+    voteAverage: "4.3",
+    movieLanguages: [
+      {
+        title: "Some title ",
+        language: "ar",
+        overview: "Some overview"
+      }
+    ],
+    movieVideos: [
+      {
+        title: "Video title",
+        site: "Youtube",
+        key: "videoid",
+        type: "Trailer"
+      }
+    ],
+    genres: ["Comedy", "Horror"]
   }
 ];

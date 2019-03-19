@@ -1,5 +1,6 @@
 import { Router } from "express";
-import Movie, { genres, categories } from "../../../models/Movie";
+import Movie from "../../../models/Movie";
+import { genres, categories } from "../../../models/concerns";
 
 const apiRouter = Router();
 
@@ -8,7 +9,7 @@ apiRouter.get("/search/:keyword", async (req, res) => {
     params: { keyword }
   } = req;
   const movies = await Movie.find({
-    name: new RegExp(keyword, "i")
+    originalTitle: new RegExp(keyword, "i")
   });
   res.json({ movies });
 });

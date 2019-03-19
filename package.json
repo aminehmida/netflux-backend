@@ -6,7 +6,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "test:watch": "jest --watch"
+    "test": "jest",
+    "test:watch": "yarn test --watch"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

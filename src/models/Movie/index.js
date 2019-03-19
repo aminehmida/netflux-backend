@@ -1,52 +1,37 @@
 import mongoose from "mongoose";
+import {
+  createdAt,
+  requiredNumber,
+  requiredString,
+  languages,
+  categories,
+  genres
+} from "../concerns";
+import { MovieVideoSchema } from "./MovieVideo";
+import { MovieLanguageSchema } from "./MovieLanguage";
 
 const Schema = mongoose.Schema;
 
-export const genres = {
-  ACTION_AND_ADVENTURES: "Actions & Adventures",
-  AMERICAN: "American",
-  DRAMA: "Drama",
-  SCI_FI_AND_FANTASY: "Sci-Fi & Fantasy",
-  KIDS: "Kids",
-  THRILLER: "Thirller",
-  TEENS: "Teens",
-  ROMANCE: "Romance",
-  HORROR: "Horror",
-  COMEDY: "Comedy"
-};
-
-export const categories = {
-  FILM: "Film",
-  SERIES: "Series",
-  DOCUMENTRY: "Documentry"
-};
-
 const MovieSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  year: {
-    type: Number,
-    required: true
-  },
-  image: {
-    type: String,
+  originalTitle: requiredString,
+  originalOverview: requiredString,
+  posterPath: requiredString,
+  backdropPath: requiredString,
+  popularity: requiredNumber,
+  voteAverage: requiredNumber,
+  releaseDate: requiredString,
+  genres: {
+    type: [{ type: String, enum: Object.values(genres) }],
     required: true
   },
   category: {
     type: String,
-    enum: Object.keys(categories),
+    enum: Object.values(categories),
     required: true
   },
-  genre: {
-    type: [{ type: String, enum: Object.keys(genres) }],
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  movieVideos: [MovieVideoSchema],
+  movieLanguages: [MovieLanguageSchema],
+  createdAt
 });
 
 export default mongoose.model("movie", MovieSchema);

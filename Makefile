@@ -33,6 +33,9 @@ start-prod:
 start-sync:
 	bundle exec docker-sync start --foreground
 
+test:
+	docker exec -it netflux yarn test
+
 clean:
 	bundle exec docker-sync-stack clean
 

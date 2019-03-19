@@ -1,32 +1,23 @@
 import mongoose from "mongoose";
 import { encryptPassword } from "../../helpers/security";
-import { preSaveEncryprtPassword } from "../concerns";
+import {
+  preSaveEncryprtPassword,
+  requiredString,
+  createdAt
+} from "../concerns";
 
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    reqiured: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
+  firstName: requiredString,
+  lastName: requiredString,
+  password: requiredString,
   email: {
     type: String,
     required: true,
     unique: true
   },
-
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  createdAt
 });
 
 UserSchema.pre("save", preSaveEncryprtPassword);

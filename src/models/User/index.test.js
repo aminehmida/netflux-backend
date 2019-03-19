@@ -1,29 +1,37 @@
 import User, { findUser } from "./index";
 import * as helpers from "../../helpers/security";
-import { clearDB } from "../../config/jestSetup";
 jest.mock("../../helpers/security");
+process.env.TEST_SUITE = "users-models-systems-test";
 
 describe("User", () => {
-  describe("existExists", () => {
+  beforeEach(done => {
+    User.remove({}, err => {
+      if (err) console.error(err);
+      done();
+    });
+  });
+
+  describe("findUser", () => {
     it("checks if user exists", async () => {
       helpers.encryptPassword.mockImplementation(() => "encrypted-password");
+
       const newUser = new User({
-        firstName: "عادل",
-        lastName: "إمام",
-        email: "adelimam@email.com",
+        firstName: "sadiq",
+        lastName: "khan",
+        email: "londonmayor@email.com",
         password: "password"
       });
 
       await newUser.save();
       const user = await findUser({
-        email: "adelimam@email.com",
+        email: "londonmayor@email.com",
         password: "password"
       });
 
       expect(user).toMatchObject({
-        firstName: "عادل",
-        lastName: "إمام",
-        email: "adelimam@email.com"
+        firstName: "sadiq",
+        lastName: "khan",
+        email: "londonmayor@email.com"
       });
     });
   });
