@@ -1,12 +1,15 @@
 FROM node:10
 
-WORKDIR /usr/src/app
+COPY package.json /app/
+COPY yarn.lock /app/
+COPY .env /app/
+COPY .babelrc /app/
 
-COPY package.json ./
+COPY ./src /app/src
+
+WORKDIR /app
 
 RUN yarn
-
-COPY . .
 
 EXPOSE 3000
 
