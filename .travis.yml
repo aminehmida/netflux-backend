@@ -6,4 +6,4 @@ install:
   - sleep 10
 
 script:
-  - docker exec -it netflux yarn test
+  - docker exec -it netflux yarn test --detectOpenHandles
