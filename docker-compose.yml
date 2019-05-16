@@ -20,4 +20,4 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ../netflux/data:/data/db:rw
+      - ./db:/data/db:rw
