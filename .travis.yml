@@ -1,0 +1,9 @@
+services:
+  - docker
+
+install:
+  - docker-compose up -d
+  - sleep 10
+
+script:
+  - docker exec -it netflux yarn test
