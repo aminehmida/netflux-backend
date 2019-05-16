@@ -2,8 +2,16 @@ services:
   - docker
 
 install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker-compose up -d
   - sleep 10
 
 script:
   - docker exec -it netflux yarn test --forceExit
+
+deploy:
+  provider: script
+  script: docker push aminehmid/netflux:$TRAVIS_TAG
+  on:
+    tags: true
+    branch: master
