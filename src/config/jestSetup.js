@@ -33,7 +33,7 @@ beforeEach(async done => {
 });
 
 afterEach(done => {
-  // mongoose.disconnect();
+  mongoose.disconnect();
   return done();
 });
 
