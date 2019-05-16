@@ -38,5 +38,6 @@ afterEach(done => {
 });
 
 afterAll(done => {
+  mongoose.connection.close();
   return done();
 });
