@@ -11,7 +11,7 @@ script:
 
 deploy:
   provider: script
-  script: docker push aminehmid/netflux:$TRAVIS_TAG
+  script: docker push aminehmida/netflux:$TRAVIS_TAG
   on:
     tags: true
     branch: master
