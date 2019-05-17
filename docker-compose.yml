@@ -7,7 +7,7 @@ services:
     container_name: netflux
     restart: always
     build: .
-    image: aminehmida/netflux:${TRAVIS_TAG:-latest}
+    image: aminehmida/netflux
     ports:
       - 80:3000
     links:
