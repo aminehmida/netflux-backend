@@ -3,17 +3,15 @@ services:
 
 install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker-compose up -d
+  - make start-prod
   - sleep 10
 
 script:
-  - docker exec -it netflux yarn test --forceExit
+  - make test
 
 deploy:
   provider: script
-  script: bash -c "docker push aminehmida/netflux &&\
-                   docker tag aminehmida/netflux aminehmida/netflux:$TRAVIS_TAG &&\
-                   docker push aminehmida/netflux:$TRAVIS_TAG"
+  script: make push-image
   on:
     tags: true
     branch: master

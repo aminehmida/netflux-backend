@@ -28,16 +28,21 @@ start-dev:
 	docker-compose -f docker-compose.yml -f docker-compose-dev.yml up
 
 start-prod: 
-	docker-compose -f docker-compose.yml up 
+	docker-compose -f docker-compose.yml up -d
 
 start-sync:
 	bundle exec docker-sync start --foreground
 
 test:
-	docker exec -it netflux yarn test
+	docker exec -it netflux yarn test --forceExit
 
 clean:
 	bundle exec docker-sync-stack clean
 
 pull-images:
 	docker-compose pull
+
+push-image:
+	docker push aminehmida/netflux
+	docker tag aminehmida/netflux aminehmida/netflux:${TRAVIS_TAG}
+	docker push aminehmida/netflux:${TRAVIS_TAG}
