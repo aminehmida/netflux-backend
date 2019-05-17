@@ -46,3 +46,4 @@ push-image:
 	docker push aminehmida/netflux
 	docker tag aminehmida/netflux aminehmida/netflux:${TRAVIS_TAG}
 	docker push aminehmida/netflux:${TRAVIS_TAG}
+	echo "Push finish"
