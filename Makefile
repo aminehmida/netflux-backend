@@ -43,6 +43,10 @@ pull-images:
 	docker-compose pull
 
 push-image:
+	echo "Push started"
 	docker push aminehmida/netflux
+	echo "Push started 1"
 	docker tag aminehmida/netflux aminehmida/netflux:${TRAVIS_TAG}
+	echo "Push started 2"
 	docker push aminehmida/netflux:${TRAVIS_TAG}
+	echo "Push finish"
