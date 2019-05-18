@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflux-deployment
+  labels:
+    app: netflux
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netflux
+  template:
+    metadata:
+      labels:
+        app: netflux
+    spec:
+      containers:
+      - name: netflux
+        image: aminehmida/netflux:0.1.6
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_DB_HOST
+          value: mongodb:27017
+

@@ -10,8 +10,13 @@ script:
   - make test
 
 deploy:
-  provider: script
-  script: make push-image
-  on:
-    tags: true
-    branch: master
+  - provider: script
+    script: make push-image
+    on:
+      tags: true
+      branch: master
+  - provider: script
+    script: make deploy-to-k8s
+    on:
+      tags: true
+      branch: master
