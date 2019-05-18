@@ -48,7 +48,7 @@ push-image:
 	docker push aminehmida/netflux:${TRAVIS_TAG}
 
 deploy-to-k8s:
-	rm ./deployment/config
+	rm ./deployment/config || true
 	gpg -d --batch --passphrase ${KUBECTL_PASS} -o ./deployment/config ./deployment/config.gpg
 	kubectl --kubeconfig ./deployment/config apply -f ./deployment/deployment.yaml
 	rm ./deployment/config
