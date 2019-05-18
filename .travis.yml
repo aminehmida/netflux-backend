@@ -12,8 +12,8 @@ env:
 before_install:
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; curl https://sdk.cloud.google.com | bash > /dev/null; fi
   - source $HOME/google-cloud-sdk/path.bash.inc
-  - echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-  - gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+  - gpg -d --batch --passphrase ${SERVICE_KEY_PASS} -o ./deployment/service-key.json ./deployment/service-key.json.gpg
+  - gcloud auth activate-service-account --key-file=./deployment/service-key.json
   - gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
   - gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
   - gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
