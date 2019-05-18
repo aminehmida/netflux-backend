@@ -48,10 +48,9 @@ push-image:
 	docker push aminehmida/netflux:${TRAVIS_TAG}
 
 deploy-to-k8s:
-	curl -LO https://storage.googleapis.com/kubernetes-release/release/$(shell curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-	chmod +x ./kubectl
 	rm ./deployment/config || true
 	gpg -d --batch --passphrase ${KUBECTL_PASS} -o ./deployment/config ./deployment/config.gpg
-	./kubectl --kubeconfig ./deployment/config apply -f ./deployment/deployment.yaml
+	sed -i "s#<HOME>#${HOME}#" ./deployment/config
+	kubectl --kubeconfig ./deployment/config apply -f ./deployment/deployment.yaml
 	rm ./deployment/config
 
